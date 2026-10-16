@@ -1,0 +1,10 @@
+node_modules/
+public/
+db.json
+.deploy_git/
+.deploy/
+*.log
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db

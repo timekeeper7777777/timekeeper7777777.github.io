@@ -1,0 +1,22 @@
+# 只放了最关键的几项，其余用 Fluid 默认值（默认已开启目录、代码高亮、暗色切换）
+# 完整可选项见主题内 node_modules/hexo-theme-fluid/_config.yml
+
+# 导航栏
+menu:
+  - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+  - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+  - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+  - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+  - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+
+# 站内搜索，依赖 hexo-generator-search
+search:
+  enable: true
+  path: /local-search.xml
+  generate_path: /local-search.xml
+  field: post
+  content: true
+
+# 页脚
+footer:
+  content: ' © 2026 神 · Powered by Hexo Fluid '
