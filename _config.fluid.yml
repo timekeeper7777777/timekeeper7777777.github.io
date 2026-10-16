@@ -1,5 +1,5 @@
-# 只放了最关键的几项，其余用 Fluid 默认值（默认已开启目录、代码高亮、暗色切换）
-# 完整可选项见主题内 node_modules/hexo-theme-fluid/_config.yml
+# Fluid 主题配置（Quiet 定制版）
+# 完整可选项见 node_modules/hexo-theme-fluid/_config.yml
 
 # 导航栏
 menu:
@@ -8,6 +8,102 @@ menu:
   - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
   - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
   - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+
+# 暗色模式：跟随系统 + 可手动切换
+dark_mode:
+  enable: true
+  default: auto
+
+# 配色（与 source/css/custom.css 中的变量保持一致）
+color:
+  body_bg_color: "#f4f6f8"
+  body_bg_color_dark: "#0e1318"
+
+  navbar_bg_color: "#16211f"
+  navbar_bg_color_dark: "#0e1318"
+  navbar_text_color: "#ffffff"
+  navbar_text_color_dark: "#dbe2ea"
+
+  subtitle_color: "#ffffff"
+  subtitle_color_dark: "#dbe2ea"
+
+  text_color: "#1f2933"
+  text_color_dark: "#dbe2ea"
+
+  sec_text_color: "#6b7785"
+  sec_text_color_dark: "#8b98a5"
+
+  board_color: "#ffffff"
+  board_color_dark: "#151b21"
+
+  post_text_color: "#1f2933"
+  post_text_color_dark: "#dbe2ea"
+
+  post_heading_color: "#16211f"
+  post_heading_color_dark: "#eef2f6"
+
+  post_link_color: "#2f6f5f"
+  post_link_color_dark: "#5fd3b4"
+
+  link_hover_color: "#2f6f5f"
+  link_hover_color_dark: "#5fd3b4"
+
+  link_hover_bg_color: "#eef4f2"
+  link_hover_bg_color_dark: "#1b242c"
+
+  line_color: "#e6eaef"
+  line_color_dark: "#232c35"
+
+  scrollbar_color: "#cfd6dd"
+  scrollbar_color_dark: "#2c3742"
+  scrollbar_hover_color: "#9aa6b2"
+  scrollbar_hover_color_dark: "#3d4b58"
+
+  button_bg_color: "transparent"
+  button_bg_color_dark: "transparent"
+  button_hover_bg_color: "#eef2f5"
+  button_hover_bg_color_dark: "#1e2832"
+
+# 字体
+font:
+  font_size: 16px
+  font_family:
+  letter_spacing: 0.01em
+  code_font_size: 88%
+
+# 自定义样式与脚本（路径相对 source 目录）
+custom_css:
+  - /css/custom.css
+custom_js:
+  - /js/custom.js
+
+# 首屏
+banner:
+  random_img: false
+  parallax: true
+  width_height_ratio: 1.0
+
+# 首页
+index:
+  banner_img: /img/default.png
+  banner_img_height: 100
+  banner_mask_alpha: 0.15
+  slogan:
+    enable: true
+    text: "把学到的东西写下来，才算真的学会"
+  auto_excerpt:
+    enable: true
+  post_url_target: _self
+  post_meta:
+    date: true
+    category: true
+    tag: true
+
+# 文章页
+post:
+  banner_img: /img/default.png
+  banner_img_height: 45
+  banner_mask_alpha: 0.15
 
 # 站内搜索，依赖 hexo-generator-search
 search:
@@ -19,4 +115,6 @@ search:
 
 # 页脚
 footer:
-  content: ' © 2026 神 · Powered by Hexo Fluid '
+  content: ' © 2026 Timekeeper · 记录取证与代码 '
+  statistics:
+    enable: false
