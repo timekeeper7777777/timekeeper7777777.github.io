@@ -133,3 +133,46 @@ blog/
 │   └── about/             关于页
 └── .github/workflows/     自动部署
 ```
+
+---
+
+## 部署到 Cloudflare Pages（推荐）
+
+你现在已经能把 Github Pages 用起来了，但它在国内时快时慢。加一层 Cloudflare Pages 就能解决：**同一个仓库，push 一次，两边同时更新**，互不影响。
+
+### 一次性配置（约 3 分钟）
+
+1. 登录 https://dash.cloudflare.com
+2. 左侧 **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
+3. 授权 GitHub，选中 `timekeeper7777777.github.io` 仓库
+4. 填构建配置（**照抄，别用预设**）：
+
+| 字段 | 值 |
+| --- | --- |
+| Project name | `blog-timekeeper`（决定你的域名，随便起） |
+| Framework preset | `None` |
+| Root directory | `/` |
+| Build command | `npm run build` |
+| Build output directory | `public` |
+| Node version（环境变量） | `22` |
+
+5. 点 **Save and Deploy**，等一两分钟，会给你一个 `blog-timekeeper.pages.dev` 的域名
+
+### 为什么必须设 Node 版本
+
+`hexo 8` 要求 Node **≥ 20.19**，而 Cloudflare 的默认版本可能偏低，不设就会构建失败。仓库里已经放了两个保险：`.nvmrc`（内容 `22`）和 `package.json` 里的 `engines.node`，但**面板里显式设一次最稳**。
+
+### 免费额度够用吗
+
+| 项 | 免费额度 |
+| --- | --- |
+| 构建次数 | 每月 500 次（你一天推 10 次都用不完） |
+| 流量 | 不限量 |
+| 自定义域名 | 支持，自带 HTTPS 证书 |
+| 费用 | 0 元，不要信用卡 |
+
+### 日常
+
+什么都不用做。写完文章 `git push`，GitHub Actions 和 Cloudflare Pages 会各自自动更新。
+
+想绑自己的域名：Pages 项目 → **Custom domains** → 按提示添加即可（域名要花钱买，`.pages.dev` 永久免费）。
