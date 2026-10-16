@@ -21,7 +21,7 @@
 
     /* 2 数字雨 */
     var banner = document.querySelector('.banner');
-    if (banner && !reduce) {
+    if (banner && !reduce && window.innerWidth > 767) {
       var cv = document.createElement('canvas');
       cv.id = 'rain-canvas';
       banner.insertBefore(cv, banner.firstChild);
