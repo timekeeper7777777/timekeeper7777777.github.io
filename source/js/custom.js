@@ -1,5 +1,5 @@
-/* CYBER —— 视觉特效层
-   数字雨 / 鼠标光晕 / HUD / 故障字 / 终端代码块 / 进度条 / 入场 / 复制 */
+/* JOJO7 —— Steel Ball Run 特效层
+   星点 / 放射线(CSS) / 拟声词滚动带 / SBR 徽记 / 漫画终端条 / To Be Continued */
 (function () {
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
@@ -8,88 +8,55 @@
 
   ready(function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* 1 鼠标光晕 */
-    if (!reduce && window.innerWidth > 767) {
-      var glow = document.createElement('div');
-      glow.id = 'cyber-glow';
-      document.body.appendChild(glow);
-      window.addEventListener('mousemove', function (e) {
-        glow.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
-      }, { passive: true });
-    }
-
-    /* 2 数字雨 */
     var banner = document.querySelector('.banner');
-    if (banner && !reduce && window.innerWidth > 767) {
-      var cv = document.createElement('canvas');
-      cv.id = 'rain-canvas';
-      banner.insertBefore(cv, banner.firstChild);
-      var ctx = cv.getContext('2d');
-      var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEF<>{}[]/\\$#@%&*';
-      var fontSize = 14, cols = 0, drops = [], w = 0, h = 0;
 
-      function sizeCanvas() {
-        w = cv.clientWidth; h = cv.clientHeight;
-        var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        cv.width = w * dpr; cv.height = h * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        cols = Math.floor(w / fontSize);
-        drops = [];
-        for (var i = 0; i < cols; i++) drops[i] = Math.random() * -50;
-      }
-      sizeCanvas();
-      window.addEventListener('resize', sizeCanvas);
-
-      var last = 0;
-      function draw(ts) {
-        requestAnimationFrame(draw);
-        if (ts - last < 55) return;
-        last = ts;
-        ctx.fillStyle = 'rgba(4, 6, 11, 0.14)';
-        ctx.fillRect(0, 0, w, h);
-        ctx.font = fontSize + 'px monospace';
-        for (var i = 0; i < drops.length; i++) {
-          var ch = chars.charAt(Math.floor(Math.random() * chars.length));
-          var y = drops[i] * fontSize;
-          if (y > 0 && y < h) {
-            ctx.fillStyle = 'rgba(0, 240, 255, 0.75)';
-            ctx.fillText(ch, i * fontSize, y);
-            if (Math.random() > 0.985) {
-              ctx.fillStyle = 'rgba(255, 46, 151, 0.9)';
-              ctx.fillText(ch, i * fontSize, y);
-            }
-          }
-          drops[i]++;
-          if (y > h && Math.random() > 0.975) drops[i] = 0;
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-
-    /* 3 HUD 装饰 */
+    /* 1 星点（五角星形，随机大小/位置/闪烁延迟） */
     if (banner) {
-      var hud = document.createElement('div');
-      hud.className = 'cyber-hud';
-      hud.innerHTML =
-        '<span class="hud-corner tl"></span><span class="hud-corner tr"></span>' +
-        '<span class="hud-corner bl"></span><span class="hud-corner br"></span>' +
-        '<div class="hud-status"><span class="dot"></span>NODE_ONLINE // <span id="hud-clock">--:--:--</span></div>';
-      banner.appendChild(hud);
-      var clock = hud.querySelector('#hud-clock');
-      function tick() {
-        var d = new Date();
-        function p(n) { return n < 10 ? '0' + n : '' + n; }
-        clock.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+      var starBox = document.createElement('div');
+      starBox.className = 'stars';
+      banner.insertBefore(starBox, banner.firstChild);
+      var n = window.innerWidth > 767 ? 42 : 22;
+      for (var i = 0; i < n; i++) {
+        var s = document.createElement('i');
+        var size = 5 + Math.random() * 11;
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left = (Math.random() * 96) + '%';
+        s.style.top = (Math.random() * 62) + '%';
+        s.style.animationDelay = (Math.random() * 3.2) + 's';
+        s.style.animationDuration = (2.4 + Math.random() * 2.2) + 's';
+        starBox.appendChild(s);
       }
-      tick(); setInterval(tick, 1000);
+
+      /* 2 SBR 徽记 */
+      var badge = document.createElement('div');
+      badge.className = 'sbr-badge';
+      badge.innerHTML =
+        '<span class="star">&#9733;</span>' +
+        '<div class="txt">STEEL BALL RUN</div>' +
+        '<div class="sub">第七部 飙马野郎</div>';
+      banner.appendChild(badge);
     }
 
-    /* 4 故障字标题 */
-    var title = document.querySelector('.banner-text h1, .banner-text .h1');
-    if (title) title.setAttribute('data-text', (title.textContent || '').trim());
+    /* 3 拟声词滚动带（内容重复两遍以无缝循环） */
+    if (!document.querySelector('.onomatopoeia')) {
+      var words = ['ゴゴゴゴ', 'メメタ', 'ドドドド', 'ゴゴゴ', 'ドッドッ', 'ズズウン',
+                   'ドクン', 'メメメ', 'キィーン', 'ゴォオ'];
+      var wrap = document.createElement('div');
+      wrap.className = 'onomatopoeia';
+      wrap.innerHTML = '<div class="onomatopoeia-track">' +
+        '<span>' + words.join('</span><span>') + '</span>' +
+        '<span>' + words.join('</span><span>') + '</span>' +
+        '</div>';
+      var anchor = document.querySelector('.banner');
+      if (anchor && anchor.parentNode) {
+        anchor.parentNode.insertBefore(wrap, anchor.nextSibling);
+      } else {
+        document.body.appendChild(wrap);
+      }
+    }
 
-    /* 5 终端风格代码块顶栏 */
+    /* 4 漫画风终端条 */
     document.querySelectorAll('.highlight').forEach(function (el) {
       if (el.querySelector('.term-bar')) return;
       var m = (el.className || '').match(/highlight\s+([\w+-]+)/);
@@ -103,15 +70,16 @@
       el.insertBefore(bar, el.firstChild);
     });
 
-    /* 6 卡片序号 */
-    document.querySelectorAll('.index-card').forEach(function (el, i) {
-      var s = document.createElement('span');
-      s.className = 'cyber-idx';
-      s.textContent = (i + 1 < 10 ? '0' : '') + (i + 1);
-      el.appendChild(s);
-    });
+    /* 5 To Be Continued */
+    var footer = document.querySelector('.footer-inner');
+    if (footer && !footer.querySelector('.to-be-continued')) {
+      var tbc = document.createElement('div');
+      tbc.className = 'to-be-continued';
+      tbc.innerHTML = 'TO BE CONTINUED<span class="arrow">&#10142;</span>';
+      footer.appendChild(tbc);
+    }
 
-    /* 7 阅读进度条 */
+    /* 6 阅读进度条 */
     var bar = document.createElement('div');
     bar.id = 'read-progress';
     document.body.appendChild(bar);
@@ -125,7 +93,7 @@
     window.addEventListener('resize', updateProgress);
     updateProgress();
 
-    /* 8 卡片入场 */
+    /* 7 卡片入场 */
     var cards = document.querySelectorAll('.index-card');
     if (cards.length && 'IntersectionObserver' in window && !reduce) {
       cards.forEach(function (el) { el.classList.add('reveal'); });
@@ -137,7 +105,7 @@
       cards.forEach(function (el) { io.observe(el); });
     }
 
-    /* 9 代码复制 */
+    /* 8 代码复制 */
     document.querySelectorAll('.highlight').forEach(function (block) {
       if (block.querySelector('.copy-btn')) return;
       var btn = document.createElement('button');
@@ -149,7 +117,7 @@
         var codeEl = block.querySelector('code');
         var text = codeEl ? codeEl.innerText : block.innerText;
         var done = function () {
-          btn.textContent = 'OK';
+          btn.textContent = 'COPIED';
           setTimeout(function () { btn.textContent = 'COPY'; }, 1600);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -162,13 +130,5 @@
         }
       });
     });
-
-    /* 10 偶发故障闪烁 */
-    if (!reduce) {
-      setInterval(function () {
-        document.body.classList.add('glitching');
-        setTimeout(function () { document.body.classList.remove('glitching'); }, 300);
-      }, 21000);
-    }
   });
 })();

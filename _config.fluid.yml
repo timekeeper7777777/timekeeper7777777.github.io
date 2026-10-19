@@ -1,4 +1,4 @@
-# Fluid 主题配置（CYBER 赛博朋克版）
+# Fluid 主题配置（JOJO7 / Steel Ball Run 版）
 # 完整可选项见 node_modules/hexo-theme-fluid/_config.yml
 
 # 导航栏
@@ -9,60 +9,60 @@ menu:
   - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
   - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
 
-# 默认深色（赛博朋克的主场）
+# 默认羊皮纸浅色（漫画页质感），可切深夜蓝
 dark_mode:
   enable: true
-  default: dark
+  default: light
 
-# 配色：深浅两套都走霓虹深色系，怎么切都是赛博
+# 配色：羊皮纸 + 漫画墨（浅）/ 深夜蓝 + 米金（深）
 color:
-  body_bg_color: "#05070d"
-  body_bg_color_dark: "#05070d"
+  body_bg_color: "#f2e8d5"
+  body_bg_color_dark: "#0e1a2b"
 
-  navbar_bg_color: "#050910"
-  navbar_bg_color_dark: "#050910"
-  navbar_text_color: "#c9d8e8"
-  navbar_text_color_dark: "#c9d8e8"
+  navbar_bg_color: "#0b1626"
+  navbar_bg_color_dark: "#0b1626"
+  navbar_text_color: "#f0e6cc"
+  navbar_text_color_dark: "#f0e6cc"
 
-  subtitle_color: "#9fe9ff"
-  subtitle_color_dark: "#9fe9ff"
+  subtitle_color: "#e9dcbb"
+  subtitle_color_dark: "#e9dcbb"
 
-  text_color: "#c9d8e8"
-  text_color_dark: "#c9d8e8"
+  text_color: "#241c12"
+  text_color_dark: "#e8dcc0"
 
-  sec_text_color: "#7f9bb5"
-  sec_text_color_dark: "#7f9bb5"
+  sec_text_color: "#6b5b45"
+  sec_text_color_dark: "#9d8f74"
 
-  board_color: "#0b111c"
-  board_color_dark: "#0b111c"
+  board_color: "#faf3e3"
+  board_color_dark: "#16263c"
 
-  post_text_color: "#c9d8e8"
-  post_text_color_dark: "#c9d8e8"
+  post_text_color: "#241c12"
+  post_text_color_dark: "#e8dcc0"
 
-  post_heading_color: "#e8f6ff"
-  post_heading_color_dark: "#e8f6ff"
+  post_heading_color: "#241c12"
+  post_heading_color_dark: "#f0c75e"
 
-  post_link_color: "#00f0ff"
-  post_link_color_dark: "#00f0ff"
+  post_link_color: "#a03d2d"
+  post_link_color_dark: "#f0c75e"
 
-  link_hover_color: "#ff2e97"
-  link_hover_color_dark: "#ff2e97"
+  link_hover_color: "#8a6a1f"
+  link_hover_color_dark: "#e9b44c"
 
-  link_hover_bg_color: "#0d1723"
-  link_hover_bg_color_dark: "#0d1723"
+  link_hover_bg_color: "rgba(201,162,39,.18)"
+  link_hover_bg_color_dark: "#1d2f4a"
 
-  line_color: "#16283a"
-  line_color_dark: "#16283a"
+  line_color: "#d8c9a8"
+  line_color_dark: "#2b3f5c"
 
-  scrollbar_color: "#16324a"
-  scrollbar_color_dark: "#16324a"
-  scrollbar_hover_color: "#00f0ff"
-  scrollbar_hover_color_dark: "#00f0ff"
+  scrollbar_color: "#12233b"
+  scrollbar_color_dark: "#12233b"
+  scrollbar_hover_color: "#8a6a1f"
+  scrollbar_hover_color_dark: "#8a6a1f"
 
   button_bg_color: "transparent"
   button_bg_color_dark: "transparent"
-  button_hover_bg_color: "#0f1c28"
-  button_hover_bg_color_dark: "#0f1c28"
+  button_hover_bg_color: "rgba(201,162,39,.22)"
+  button_hover_bg_color_dark: "#1d2f4a"
 
 # 字体
 font:
@@ -90,7 +90,7 @@ index:
   banner_mask_alpha: 0.1
   slogan:
     enable: true
-    text: "记录取证、代码与一切被拆解的东西"
+    text: "在圆弧之上，记录每一次回旋"
   auto_excerpt:
     enable: true
   post_url_target: _self
@@ -115,6 +115,6 @@ search:
 
 # 页脚
 footer:
-  content: ' © 2026 TIMEKEEPER // NODE ONLINE '
+  content: ' © 2026 TIMEKEEPER // STEEL BALL RUN '
   statistics:
     enable: false
